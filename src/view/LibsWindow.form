@@ -107,7 +107,7 @@
     </Component>
     <Component class="javax.swing.JLabel" name="labelGeckoDriverLicense">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Mozilla Geral Public (v2.0)."/>
+        <Property name="text" type="java.lang.String" value="Mozilla Public License (v2.0)."/>
       </Properties>
     </Component>
     <Component class="javax.swing.JSeparator" name="separatorGeckoDriver">

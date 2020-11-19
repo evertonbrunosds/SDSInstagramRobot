@@ -96,7 +96,7 @@ public class LibsWindow extends javax.swing.JDialog {
 
         labelGeckoDriverCopyright.setText("Copyright © 2012 - 2020. Mozilla.");
 
-        labelGeckoDriverLicense.setText("Mozilla Geral Public (v2.0).");
+        labelGeckoDriverLicense.setText("Mozilla Public License (v2.0).");
 
         labelSeleniumName.setText("Selenium Java (v3.5.3)");
 

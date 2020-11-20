@@ -158,7 +158,7 @@
   <SubComponents>
     <Component class="javax.swing.JLabel" name="labelTotalAttemptsCounter">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Total de Tentativas: 0"/>
+        <Property name="text" type="java.lang.String" value="Tentativas Totalizadas: 0"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="labelFailureCounter">

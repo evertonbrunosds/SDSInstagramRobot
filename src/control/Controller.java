@@ -20,8 +20,6 @@
 package control;
 
 import java.text.DecimalFormat;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import model.Boot;
 import model.Container;
 import model.Container.EmptyContainerException;
@@ -29,32 +27,31 @@ import static model.Factory.makeFreeThread;
 import static model.Factory.makeRandomValue;
 import model.PageFaultException;
 import static model.Factory.makeSafeThread;
+import static java.lang.Thread.sleep;
 
 /**
  * Classe responsável por comportar-se como controlador.
  * @author Everton Bruno Silva dos Santos.
- * @version 1.0
+ * @version 1.1
  */
 public final class Controller {
     /**
      * Refere-se a instância singular do controlador.
      */
-    private static Controller instance;
+    private final static Controller INSTANCE = new Controller();
     /**
      * Refere-se ao robô contido no controlador.
      */
     private Boot boot;
     /**
-     * Refere-se a indicativo de que o controlador está rodando.
+     * Refere-se a thread que está rodando no controlador.
      */
-    private boolean isRunning;
+    private Thread runningThread;
 
     /**
      * Construtor responsável pelo instanciamento do controlador.
      */
     private Controller() {
-        boot = null;
-        isRunning = false;
     }
 
     /**
@@ -62,10 +59,7 @@ public final class Controller {
      * @return Retorna instância singular do controlador.
      */
     public static Controller getInstance() {
-        if (instance == null) {
-            instance = new Controller();
-        }
-        return instance;
+        return INSTANCE;
     }
 
     /**
@@ -91,7 +85,7 @@ public final class Controller {
      * @return Retorna indicativo de que o controlador está em execução.
      */
     public boolean isRunning() {
-        return isRunning;
+        return runningThread != null;
     }
 
     /**
@@ -108,6 +102,7 @@ public final class Controller {
      */
     public void disconnect() {
         makeSafeThread(() -> {
+            stop();
             if (boot != null) {
                 boot.disconnect();
                 boot = null;
@@ -125,33 +120,49 @@ public final class Controller {
 
     /**
      * Método responsável por disparar comentários massivos.
-     * @param comments Refere-se ao container de comentários.
+     * @param commentsAvailable Refere-se ao container de comentários disponíveis.
      */
-    public void run(final Container<String> comments) {
-        if (isReady() && !isRunning()) {
-            makeFreeThread(() -> {
-                isRunning = true;
-                while (isReady() && isRunning()) {
-                    try {
-                        final int interval = makeRandomValue(10000, 20000);
-                        boot.getStateMessage().send("Ativo! Comentará em " + (interval / 1000) + " Segundos...");
-                        sleep(interval);
-                        boot.throwComment(comments.safeGet());
-                    } catch (final PageFaultException ex) {
-                        boot.updateCurrentPage();
-                        final int interval = makeRandomValue(60000 * 3, 60000 * 5);
-                        final String prefix = "Ativo! Disfarçando Comportamento Suspeito por ";
-                        String suffix = " Minuto...";
-                        if ((interval / 60000) > 1) suffix = " Minutos...";
-                        boot.getStateMessage().send(prefix + toString(((double) interval) / 60000.0) + suffix);
-                        sleep(interval);
-                    } catch (final EmptyContainerException ex) {
-                        isRunning = false;
+    public void run(final Container<String> commentsAvailable) {
+        makeSafeThread(() -> {
+            if (isReady() && !isRunning()) {
+                final Thread thread = makeFreeThread(() -> {
+                    while (isReady()) {
+                        try {
+                            throwComment(commentsAvailable);
+                        } catch (final InterruptedException | EmptyContainerException ex) {
+                            break;
+                        }
                     }
-                }
-                isRunning = false;
-                boot.getStateMessage().send("Estático! Aguardando Ações de Usuário...");
-            }).start();
+                    boot.getStateMessage().send(Boot.TextMessage.AWAITING_USER_ACTION);
+                    runningThread = null;
+                });
+                runningThread = thread;
+                runningThread.start();
+            }
+        }).start();
+    }
+
+    /**
+     * Método responsável por disparar comentário individual com restrições de intervalo de tempo.
+     * @param commentsAvailable Refere-se ao container de comentários disponíveis.
+     * @throws InterruptedException    Exceção lançada no caso da thread ser interrompida.
+     * @throws EmptyContainerException Exceção lançada no caso do container de comentários estar vazio.
+     */
+    private void throwComment(final Container<String> commentsAvailable) 
+            throws InterruptedException, EmptyContainerException {
+        try {
+            final int interval = makeRandomValue(10000, 20000);
+            boot.getStateMessage().send("Ativo! Comentará em " + (interval / 1000) + " Segundos...");
+            sleep(interval);
+            boot.throwComment(commentsAvailable.safeGet());
+        } catch (final PageFaultException ex) {
+            final int interval = makeRandomValue(60000 * 3, 60000 * 5);
+            boot.updateCurrentPage();
+            final String prefix = "Ativo! Disfarçando Comportamento Suspeito por ";
+            String suffix = " Minuto...";
+            if ((interval / 60000) > 1) suffix = " Minutos...";
+            boot.getStateMessage().send(prefix + toString(((double) interval) / 60000.0) + suffix);
+            sleep(interval);
         }
     }
 
@@ -169,20 +180,7 @@ public final class Controller {
      * Método responsável por interromper o disparo de comentários massivos.
      */
     public void stop() {
-        isRunning = false;
-        boot.getStateMessage().send("Estático! Aguardando Ações de Usuário...");
-    }
-
-    /**
-     * Método responsável por fazer com que o controlador durma por determinado tempo.
-     * @param milliseconds Refere-se ao determinado tempo medido em milisegundos.
-     */
-    private void sleep(final int milliseconds) {
-        try {
-            Thread.sleep(milliseconds);
-        } catch (final InterruptedException ex) {
-            Logger.getLogger(Boot.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        if (isRunning()) runningThread.interrupt();
     }
 
 }

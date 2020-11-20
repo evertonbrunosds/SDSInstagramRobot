@@ -29,7 +29,7 @@ import model.IMessage;
 /**
  * Classe responsável por comportar-se como janela princial da aplicação.
  * @author Everton Bruno Silva dos Santos.
- * @version 1.0
+ * @version 1.1
  */
 public class MainWindow extends javax.swing.JFrame {
     /**
@@ -111,7 +111,7 @@ public class MainWindow extends javax.swing.JFrame {
      * @return Retorna instância de mensagem de total de tentativas.
      */
     private IMessage<Integer> updaterTotalAttemptsCounter() {
-        return (final Integer data) -> labelTotalAttemptsCounter.setText("Total de Tentativas: " + data);
+        return (final Integer data) -> labelTotalAttemptsCounter.setText("Tentativas Totalizadas: " + data);
     }
 
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -140,7 +140,7 @@ public class MainWindow extends javax.swing.JFrame {
         setIconImage(java.awt.Toolkit.getDefaultToolkit().getImage(getClass().getResource("/icons/x48_Size/gnome-robots-icon.png")));
         setResizable(false);
 
-        labelTotalAttemptsCounter.setText("Total de Tentativas: 0");
+        labelTotalAttemptsCounter.setText("Tentativas Totalizadas: 0");
 
         labelFailureCounter.setText("Tentativas Mal Sucedidas: 0");
 

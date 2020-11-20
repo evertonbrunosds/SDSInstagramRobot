@@ -208,25 +208,25 @@ public class Boot {
     /**
      * Classe responsável por fornecer textos mensagem emitidas pelo robô.
      * @author Everton Bruno Silva dos Santos.
-     * @version 1.0
+     * @version 1.1
      */
-    private final class TextMessage {
+    public final class TextMessage {
         /**
          * Refere-se a mensagem de configuração do robô.
          */
-        private final static String SETTING_BOOT = "Ativo! Configurando Robô...";
+        public final static String SETTING_BOOT = "Ativo! Configurando Robô...";
         /**
          * Refere-se a mensagem de conexão do robô.
          */
-        private final static String CONNECTING_BOOT = "Ativo! Conectando Perfil...";
+        public final static String CONNECTING_BOOT = "Ativo! Conectando Perfil...";
         /**
          * Refere-se a mensagem de carregamento de página web.
          */
-        private final static String LOADING_WEBPAGE = "Ativo! Carregando Página...";
+        public final static String LOADING_WEBPAGE = "Ativo! Carregando Página...";
         /**
          * Refere-se a mensagem de espera do robô por uma ação do usuário.
          */
-        private final static String AWAITING_USER_ACTION = "Estático! Aguardando Ações de Usuário...";
+        public final static String AWAITING_USER_ACTION = "Estático! Aguardando Ações de Usuário...";
     }
 
 }

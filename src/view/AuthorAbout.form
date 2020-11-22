@@ -80,7 +80,7 @@
     </Component>
     <Component class="javax.swing.JLabel" name="labelProductNameAndVersion">
       <Properties>
-        <Property name="text" type="java.lang.String" value="SDSInstagramRobot (v1.0)"/>
+        <Property name="text" type="java.lang.String" value="SDSInstagramRobot (v1.1)"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="labelNameDevAuthor">

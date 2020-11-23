@@ -32,7 +32,7 @@ import static java.lang.Thread.sleep;
 /**
  * Classe responsável por comportar-se como controlador.
  * @author Everton Bruno Silva dos Santos.
- * @version 1.1
+ * @version 1.2
  */
 public final class Controller {
     /**
@@ -52,6 +52,8 @@ public final class Controller {
      * Construtor responsável pelo instanciamento do controlador.
      */
     private Controller() {
+        boot = null;
+        runningThread = null;
     }
 
     /**
@@ -115,7 +117,7 @@ public final class Controller {
      * @param url Refere-se ao endereço da página.
      */
     public void loadPage(final String url) {
-        boot.loadPage(url);
+        makeFreeThread(() -> boot.loadPage(url)).start();
     }
 
     /**
@@ -148,7 +150,7 @@ public final class Controller {
      * @throws InterruptedException    Exceção lançada no caso da thread ser interrompida.
      * @throws EmptyContainerException Exceção lançada no caso do container de comentários estar vazio.
      */
-    private void throwComment(final Container<String> commentsAvailable) 
+    private void throwComment(final Container<String> commentsAvailable)
             throws InterruptedException, EmptyContainerException {
         try {
             final int interval = makeRandomValue(10000, 20000);
@@ -180,7 +182,11 @@ public final class Controller {
      * Método responsável por interromper o disparo de comentários massivos.
      */
     public void stop() {
-        if (isRunning()) runningThread.interrupt();
+        makeFreeThread(() -> {
+            if (isRunning()) {
+                runningThread.interrupt();
+            }
+        }).start();
     }
 
 }

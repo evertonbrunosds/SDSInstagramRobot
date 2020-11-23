@@ -33,7 +33,7 @@ import model.FileTextStream;
 /**
  * Classe responsável por comportar-se como janela de comentários.
  * @author Everton Bruno Silva dos Santos.
- * @version 1.0
+ * @version 1.2
  */
 public class CommentsWindow extends javax.swing.JDialog {
     /**
@@ -241,10 +241,20 @@ public class CommentsWindow extends javax.swing.JDialog {
                 scrollPaneMouseReleased(evt);
             }
         });
+        scrollPane.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                scrollPaneKeyReleased(evt);
+            }
+        });
 
         list.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
                 listMouseReleased(evt);
+            }
+        });
+        list.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                listKeyReleased(evt);
             }
         });
         scrollPane.setViewportView(list);
@@ -370,6 +380,18 @@ public class CommentsWindow extends javax.swing.JDialog {
             }
         }
     }//GEN-LAST:event_buttonKeyReleased
+
+    private void listKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_listKeyReleased
+        if (evt.getKeyCode() == KeyEvent.VK_DELETE) {
+            removeSelectedItens(list);
+        }
+    }//GEN-LAST:event_listKeyReleased
+
+    private void scrollPaneKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_scrollPaneKeyReleased
+        if (evt.getKeyCode() == KeyEvent.VK_DELETE) {
+            removeSelectedItens(list);
+        }
+    }//GEN-LAST:event_scrollPaneKeyReleased
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton button;

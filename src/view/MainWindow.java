@@ -21,15 +21,21 @@ package view;
 
 import com.bulenkov.darcula.DarculaLaf;
 import control.Controller;
+import javax.swing.JOptionPane;
 import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 import javax.swing.plaf.basic.BasicLookAndFeel;
+import static model.Factory.makeFreeThread;
 import model.IMessage;
+import static view.PostStopWindow.inform;
+import static view.PostStopWindow.attemptsLimit;
+import static view.PostStopWindow.failureLimit;
+import static view.PostStopWindow.successLimit;
 
 /**
  * Classe responsável por comportar-se como janela princial da aplicação.
  * @author Everton Bruno Silva dos Santos.
- * @version 1.1
+ * @version 1.2
  */
 public class MainWindow extends javax.swing.JFrame {
     /**
@@ -83,14 +89,6 @@ public class MainWindow extends javax.swing.JFrame {
     }
 
     /**
-     * Método responsável por retornar instância de mensagem de falha.
-     * @return Retorna instância de mensagem de falha.
-     */
-    private IMessage<Integer> updaterFailureCounter() {
-        return (final Integer data) -> labelFailureCounter.setText("Tentativas Mal Sucedidas: " + data);
-    }
-
-    /**
      * Método responsável por retornar instância de mensagem de estado.
      * @return Retorna instância de mensagem de estado.
      */
@@ -99,11 +97,25 @@ public class MainWindow extends javax.swing.JFrame {
     }
 
     /**
+     * Método responsável por retornar instância de mensagem de falha.
+     * @return Retorna instância de mensagem de falha.
+     */
+    private IMessage<Integer> updaterFailureCounter() {
+        return (final Integer counter) -> {
+            stopPost(failureLimit(), counter, " tentativas mal sucedidas.");
+            labelFailureCounter.setText("Tentativas Mal Sucedidas: " + counter);
+        };
+    }
+
+    /**
      * Método responsável por retornar instância de mensagem de sucesso.
      * @return Retorna instância de mensagem de sucesso.
      */
     private IMessage<Integer> updaterSuccessCounter() {
-        return (final Integer data) -> labelSuccessCounter.setText("Tentativas Bem Sucedidas: " + data);
+        return (final Integer counter) -> {
+            stopPost(successLimit(), counter, " tentativas bem sucedidas.");
+            labelSuccessCounter.setText("Tentativas Bem Sucedidas: " + counter);
+        };
     }
 
     /**
@@ -111,7 +123,29 @@ public class MainWindow extends javax.swing.JFrame {
      * @return Retorna instância de mensagem de total de tentativas.
      */
     private IMessage<Integer> updaterTotalAttemptsCounter() {
-        return (final Integer data) -> labelTotalAttemptsCounter.setText("Tentativas Totalizadas: " + data);
+        return (final Integer counter) -> {
+            stopPost(attemptsLimit(), counter, " tentativas totalizadas.");
+            labelTotalAttemptsCounter.setText("Tentativas Totalizadas: " + counter);
+        };
+    }
+
+    /**
+     * Método responsável por interromper um disparo de maneira agendada.
+     * @param limit   Refere-se ao limite que determina a interrupção.
+     * @param counter Refere-se ao contador usado como base limite de interrupção.
+     * @param suffix  Refere-se ao sufixo da mensagem a ser exibida.
+     */
+    private static void stopPost(final int limit, final int counter, final String suffix) {
+        makeFreeThread(() -> {
+            if (limit > 0 && limit <= counter) {
+                final String title = "Mensagem de Aviso";
+                final String msg = "Interrupção programada realizada após " + counter + suffix;
+                Controller.getInstance().stop();
+                if (inform()) {
+                    JOptionPane.showMessageDialog(instance, msg, title, 2);
+                }
+            }
+        }).start();
     }
 
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -126,8 +160,10 @@ public class MainWindow extends javax.swing.JFrame {
         optConnect = new javax.swing.JMenuItem();
         optDisconnect = new javax.swing.JMenuItem();
         menuComments = new javax.swing.JMenu();
+        menuStop = new javax.swing.JMenu();
+        optStopNow = new javax.swing.JMenuItem();
+        optStopPost = new javax.swing.JMenuItem();
         optThrow = new javax.swing.JMenuItem();
-        optStop = new javax.swing.JMenuItem();
         optList = new javax.swing.JMenuItem();
         menuAbout = new javax.swing.JMenu();
         optLibs = new javax.swing.JMenuItem();
@@ -181,6 +217,26 @@ public class MainWindow extends javax.swing.JFrame {
             }
         });
 
+        menuStop.setText("Interromper");
+
+        optStopNow.setText("Agora");
+        optStopNow.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                optStopNowActionPerformed(evt);
+            }
+        });
+        menuStop.add(optStopNow);
+
+        optStopPost.setText("Após");
+        optStopPost.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                optStopPostActionPerformed(evt);
+            }
+        });
+        menuStop.add(optStopPost);
+
+        menuComments.add(menuStop);
+
         optThrow.setText("Disparar");
         optThrow.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -188,14 +244,6 @@ public class MainWindow extends javax.swing.JFrame {
             }
         });
         menuComments.add(optThrow);
-
-        optStop.setText("Interromper");
-        optStop.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                optStopActionPerformed(evt);
-            }
-        });
-        menuComments.add(optStop);
 
         optList.setText("Lista");
         optList.addActionListener(new java.awt.event.ActionListener() {
@@ -239,30 +287,17 @@ public class MainWindow extends javax.swing.JFrame {
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(labelTotalAttemptsCounter)
-                    .addComponent(labelFailureCounter)
-                    .addComponent(labelSuccessCounter)
-                    .addComponent(labelState))
-                .addContainerGap(293, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(20, 20, 20)
-                .addComponent(labelState)
-                .addGap(20, 20, 20)
-                .addComponent(labelSuccessCounter)
-                .addGap(20, 20, 20)
-                .addComponent(labelFailureCounter)
-                .addGap(20, 20, 20)
-                .addComponent(labelTotalAttemptsCounter)
-                .addContainerGap(20, Short.MAX_VALUE))
-        );
+        layout.setHorizontalGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup().addGap(20, 20, 20)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                .addComponent(labelTotalAttemptsCounter).addComponent(labelFailureCounter)
+                                .addComponent(labelSuccessCounter).addComponent(labelState))
+                        .addContainerGap(293, Short.MAX_VALUE)));
+        layout.setVerticalGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(layout.createSequentialGroup().addGap(20, 20, 20).addComponent(labelState).addGap(20, 20, 20)
+                        .addComponent(labelSuccessCounter).addGap(20, 20, 20).addComponent(labelFailureCounter)
+                        .addGap(20, 20, 20).addComponent(labelTotalAttemptsCounter)
+                        .addContainerGap(20, Short.MAX_VALUE)));
 
         pack();
         setLocationRelativeTo(null);
@@ -291,16 +326,16 @@ public class MainWindow extends javax.swing.JFrame {
         final boolean isEmpty = CommentsWindow.isEmpty();
         final boolean isRunning = Controller.getInstance().isRunning();
         enable(optThrow, isReady && !isEmpty && !isRunning);
-        enable(optStop, isReady && !isEmpty && isRunning);
+        enable(optStopNow, isReady && !isEmpty && isRunning);
     }//GEN-LAST:event_menuCommentsStateChanged
 
     private void optThrowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_optThrowActionPerformed
         ThrowWindow.showModal(this);
     }//GEN-LAST:event_optThrowActionPerformed
 
-    private void optStopActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_optStopActionPerformed
+    private void optStopNowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_optStopNowActionPerformed
         Controller.getInstance().stop();
-    }//GEN-LAST:event_optStopActionPerformed
+    }//GEN-LAST:event_optStopNowActionPerformed
 
     private void optLicenseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_optLicenseActionPerformed
         LicenseWindow.showModal();
@@ -313,6 +348,10 @@ public class MainWindow extends javax.swing.JFrame {
     private void optLibsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_optLibsActionPerformed
         LibsWindow.showModal();
     }//GEN-LAST:event_optLibsActionPerformed
+
+    private void optStopPostActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_optStopPostActionPerformed
+        PostStopWindow.showModal(this);
+    }//GEN-LAST:event_optStopPostActionPerformed
 
     /**
      * Método responsável por invocar toda a aplicação.
@@ -328,7 +367,8 @@ public class MainWindow extends javax.swing.JFrame {
                 }
             }
         } catch (final UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MainWindow.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
+            java.util.logging.Logger.getLogger(MainWindow.class.getName()).log(java.util.logging.Level.SEVERE, null,
+                    ex);
         }
         java.awt.EventQueue.invokeLater(() -> {
             new MainWindow().setVisible(true);
@@ -343,13 +383,15 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JMenu menuAbout;
     private javax.swing.JMenu menuAccont;
     private javax.swing.JMenu menuComments;
+    private javax.swing.JMenu menuStop;
     private javax.swing.JMenuItem optAuthor;
     private javax.swing.JMenuItem optConnect;
     private javax.swing.JMenuItem optDisconnect;
     private javax.swing.JMenuItem optLibs;
     private javax.swing.JMenuItem optLicense;
     private javax.swing.JMenuItem optList;
-    private javax.swing.JMenuItem optStop;
+    private javax.swing.JMenuItem optStopNow;
+    private javax.swing.JMenuItem optStopPost;
     private javax.swing.JMenuItem optThrow;
     private javax.swing.JMenuBar toolBar;
     // End of variables declaration//GEN-END:variables

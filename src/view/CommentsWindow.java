@@ -88,7 +88,7 @@ public class CommentsWindow extends javax.swing.JDialog {
             return null;
         } else {
             final DefaultListModel<String> model = getModel(instance.list);
-            return model.elementAt(makeRandomValue(1, model.size()) - 1);
+            return model.elementAt(makeRandomValue(0, model.size()) - 1);
         }
     }
 

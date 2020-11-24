@@ -107,7 +107,7 @@ public final class Factory {
      * @return Retorna valor aleatório sorteado em dado intervalo fechado.
      */
     public static int makeRandomValue(final int min, final int max) {
-        return max - RANDOM.nextInt(max - min);
+        return (max == 1) ? 1 : max - RANDOM.nextInt(max - min);
     }
 
     /**

@@ -29,7 +29,7 @@ import org.openqa.selenium.WebElement;
 /**
  * Classe responsável por comportar-se como robô.
  * @author Everton Bruno Silva dos Santos.
- * @version 1.0
+ * @version 1.3
  */
 public class Boot {
     /**
@@ -53,9 +53,9 @@ public class Boot {
      */
     private final IMessage<String> stateMessage;
     /**
-     * Refere-se ao contador de sucesos.
+     * Refere-se ao contador de tentativas.
      */
-    private int successCounter;
+    private int attemptsCounter;
     /**
      * Refere-se ao contador de falhas.
      */
@@ -92,7 +92,7 @@ public class Boot {
      * Método responsável por possibilitar que o robô reinicie seus valores.
      */
     private void resetValues() {
-        successCounter = 0;
+        attemptsCounter = 0;
         failureCounter = 0;
         stateMessage.send(TextMessage.AWAITING_USER_ACTION);
         updateValues();
@@ -102,9 +102,9 @@ public class Boot {
      * Método responsável por possibilitar que o robô atualize seus valores.
      */
     private void updateValues() {
-        successMessage.send(successCounter);
+        successMessage.send(attemptsCounter - failureCounter);
         failureMessage.send(failureCounter);
-        totalAttemptsMessage.send(failureCounter + successCounter);
+        totalAttemptsMessage.send(attemptsCounter);
     }
 
     /**
@@ -160,13 +160,12 @@ public class Boot {
                 webDriver.findElement(By.className("Ypffh")).click();
                 webDriver.findElement(By.className("Ypffh")).sendKeys(comment);
                 webDriver.findElement(By.xpath("//button[contains(text(), 'Publicar')]")).click();
-                updateValues();
-                successCounter++;
+                attemptsCounter++;
             } catch (final Exception ex) {
-                failureCounter++;
-                successCounter--;
-                updateValues();
+                failureCounter += 2;
                 throw new PageFaultException();
+            } finally {
+                updateValues();
             }
         }
     }

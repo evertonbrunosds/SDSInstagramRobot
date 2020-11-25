@@ -21,6 +21,7 @@ O SDSInstagramRobot é uma ferramenta que visa automatizar a escrita de comentá
 ## Correções
 - Retardo na interrupção (v1.0).
 - Falha no disparo de comentário único (v1.1).
+- Contabilização inadequada de falhas, sucessos e tentativas (v1.2).
 
 ## Baixar o SDS Finance
 

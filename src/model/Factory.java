@@ -29,7 +29,7 @@ import org.openqa.selenium.firefox.FirefoxProfile;
 /**
  * Classe responsável por comportar-se como fábrica de objetos e dados.
  * @author Everton Bruno Silva dos Santos.
- * @version 1.0
+ * @version 1.2
  */
 public final class Factory {
     /**

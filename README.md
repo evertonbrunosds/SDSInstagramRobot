@@ -1,6 +1,6 @@
 <p id="simbol" align="center">
 	<img src="https://i.imgur.com/cjXRVut.png" height="120px"/>
-	<h1 align="center">SDSInstagramRobot v1.2</h1>
+	<h1 align="center">SDSInstagramRobot v1.3</h1>
 </p>
 
 O SDSInstagramRobot é uma ferramenta que visa automatizar a escrita de comentários em publicações do Instagram. Desse modo, o software apresentado tem por objetivo o intúito possibilitar o usuário efetue outras tarefas enquanto a interação com publicações do instagram ocorre de modo simultâneo. Sendo assim, por meio dessa ferramenta você pode economizar tempo a medida em que aumenta sua eficiência e produtividade ao se dedicar a outras atividades.
@@ -17,6 +17,8 @@ O SDSInstagramRobot é uma ferramenta que visa automatizar a escrita de comentá
 - Interrupção programada de disparo contínuo por quantidade de sucessos (v1.2).
 - Interrupção programada de disparo contínuo por quantidade de tentativas (v1.2).
 - Notificação de interrupção programada de disparo contínuo (v1.2).
+- Contagem regressiva de intervalo de disparo (v1.3).
+- Contagem regressiva de intervalo de disfarçe (v1.3).
 
 ## Correções
 - Retardo na interrupção (v1.0).
@@ -27,8 +29,8 @@ O SDSInstagramRobot é uma ferramenta que visa automatizar a escrita de comentá
 
 | Versão | Windows | Linux | MacOS |
 | --- | --- | --- | --- |
-| 1.2 | [EXE Instalável][100] | [DEB Instalável][200] | Indisponível |
-| 1.2 | [ZIP Portátil][101] | [TAR.GZ Portátil][201] | [TAR.GZ Portátil][301] |
+| 1.3 | [EXE Instalável][100] | [DEB Instalável][200] | Indisponível |
+| 1.3 | [ZIP Portátil][101] | [TAR.GZ Portátil][201] | [TAR.GZ Portátil][301] |
 
 ## Capturas de Tela
 
@@ -39,10 +41,10 @@ O SDSInstagramRobot é uma ferramenta que visa automatizar a escrita de comentá
 </p>
 
 [//]: #DownloadFile
-[100]: https://github.com/evertonbrunosds/SDSInstagramRobot/releases/download/v1.2/SDSIR-Windows-setup-32and64.exe
-[101]: https://github.com/evertonbrunosds/SDSInstagramRobot/releases/download/v1.2/SDSIR-Windows-portable-32and64.zip
-[200]: https://github.com/evertonbrunosds/SDSInstagramRobot/releases/download/v1.2/SDSIR-Linux-setup-32and64.deb
-[201]: https://github.com/evertonbrunosds/SDSInstagramRobot/releases/download/v1.2/SDSIR-Linux-portable-32and64.tar.gz
-[301]: https://github.com/evertonbrunosds/SDSInstagramRobot/releases/download/v1.2/SDSIR-MacOS-portable.tar.gz
+[100]: https://github.com/evertonbrunosds/SDSInstagramRobot/releases/download/v1.3/SDSIR-Windows-setup-32and64.exe
+[101]: https://github.com/evertonbrunosds/SDSInstagramRobot/releases/download/v1.3/SDSIR-Windows-portable-32and64.zip
+[200]: https://github.com/evertonbrunosds/SDSInstagramRobot/releases/download/v1.3/SDSIR-Linux-setup-32and64.deb
+[201]: https://github.com/evertonbrunosds/SDSInstagramRobot/releases/download/v1.3/SDSIR-Linux-portable-32and64.tar.gz
+[301]: https://github.com/evertonbrunosds/SDSInstagramRobot/releases/download/v1.3/SDSIR-MacOS-portable.tar.gz
 
 <p align="center"><em> Copyright © 2020. Everton Bruno Silva dos Santos. </em></p>

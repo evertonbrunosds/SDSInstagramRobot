@@ -26,8 +26,8 @@ import static model.Factory.makeFreeThread;
 import static model.Factory.makeRandomValue;
 import model.PageFaultException;
 import static model.Factory.makeSafeThread;
-import model.IMessage;
 import model.IRange;
+import model.ITime;
 
 /**
  * Classe responsável por comportar-se como controlador.
@@ -39,14 +39,6 @@ public final class Controller {
      * Refere-se a instância singular do controlador.
      */
     private final static Controller INSTANCE = new Controller();
-    /**
-     * Refere-se aos segundos.
-     */
-    private final static int SECOND = 1000;
-    /**
-     * Refere-se aos minutos.
-     */
-    private final static int MINUTE = 60 * SECOND;
     /**
      * Refere-se ao robô contido no controlador.
      */
@@ -166,47 +158,31 @@ public final class Controller {
             final IRange<Integer> disguiseInterval) throws InterruptedException, EmptyContainerException {
         try {
             final String prefix = "Ativo! Comentará em ";
-            sleep(SECOND, SECOND * makeRandomValue(throwInterval), milliseconds -> {
-                boot.getStateMessage().send(prefix + millisecondsToMinutes(milliseconds) + " Minuto(s)...");
+            ITime.stop(ITime.SECOND, makeRandomValue(throwInterval), milliseconds -> {
+                sendTimeStateMessage(prefix, milliseconds);
             });
             boot.throwComment(commentsAvailable.safeGet());
         } catch (final PageFaultException ex) {
             boot.updateCurrentPage();
-            final String prefix = "Ativo! Disfarçando Comportamento Suspeito por ";
-            sleep(SECOND, MINUTE * makeRandomValue(disguiseInterval), milliseconds -> {
-                boot.getStateMessage().send(prefix + millisecondsToMinutes(milliseconds) + " Minuto(s)...");
+            final String prefix = "Ativo! Disfarçando comportamento suspeito por ";
+            ITime.stop(ITime.SECOND, makeRandomValue(disguiseInterval), milliseconds -> {
+                sendTimeStateMessage(prefix, milliseconds);
             });
         }
     }
 
     /**
-     * Método responsável por converter milissegundos em minutos.
-     * @param milliseconds Refere-se aos milissegundos.
-     * @return Retorna milissegundos convertidos em minutos.
+     * Método responsável por enviar mensagem de estado de tempo de espera.
+     * @param prefix       Refere-se ao prefixo da mensagem.
+     * @param milliseconds Refere-se ao tempo de espera.
      */
-    private static String millisecondsToMinutes(final int milliseconds) {
-        int second, minute = 0;
-        if (milliseconds >= MINUTE) {
-            minute = (milliseconds / MINUTE);
-            second = (milliseconds - minute * MINUTE) / SECOND;
+    private static void sendTimeStateMessage(final String prefix, final int milliseconds) {
+        if (ITime.isHours(milliseconds)) {
+            INSTANCE.boot.getStateMessage().send(prefix + ITime.Format.hours(milliseconds) + " hora(s)...");
+        } else if (ITime.isMinutes(milliseconds)) {
+            INSTANCE.boot.getStateMessage().send(prefix + ITime.Format.minutes(milliseconds) + " minuto(s)...");
         } else {
-            second = milliseconds / SECOND;
-        }
-        return (second <= 9) ? minute + ":0" + second : minute + ":" + second;
-    }
-
-    /**
-     * Método responsável por fazer com que um dado processo seja interrompido temporáriamente.
-     * @param unitOfTime  Refere-se a unidade de tempo utilizada na interrupção.
-     * @param currentTime Refere-se ao tempo atual.
-     * @param message     Refere-se ao menssageiro de tempo restante.
-     * @throws InterruptedException Exceção lançada no caso da thread ser interrompida.
-     */
-    private static void sleep(final int unitOfTime, final int currentTime, final IMessage<Integer> message) throws InterruptedException {
-        if (currentTime > 0) {
-            message.send(currentTime);
-            Thread.sleep(unitOfTime);
-            sleep(unitOfTime, currentTime - unitOfTime, message);
+            INSTANCE.boot.getStateMessage().send(prefix + ITime.Format.seconds(milliseconds) + " segundo(s)...");
         }
     }
 

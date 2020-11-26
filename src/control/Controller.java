@@ -19,7 +19,6 @@
  */
 package control;
 
-import java.text.DecimalFormat;
 import model.Boot;
 import model.Container;
 import model.Container.EmptyContainerException;
@@ -27,18 +26,27 @@ import static model.Factory.makeFreeThread;
 import static model.Factory.makeRandomValue;
 import model.PageFaultException;
 import static model.Factory.makeSafeThread;
-import static java.lang.Thread.sleep;
+import model.IMessage;
+import model.IRange;
 
 /**
  * Classe responsável por comportar-se como controlador.
  * @author Everton Bruno Silva dos Santos.
- * @version 1.2
+ * @version 1.3
  */
 public final class Controller {
     /**
      * Refere-se a instância singular do controlador.
      */
     private final static Controller INSTANCE = new Controller();
+    /**
+     * Refere-se aos segundos.
+     */
+    private final static int SECOND = 1000;
+    /**
+     * Refere-se aos minutos.
+     */
+    private final static int MINUTE = 60 * SECOND;
     /**
      * Refere-se ao robô contido no controlador.
      */
@@ -123,14 +131,17 @@ public final class Controller {
     /**
      * Método responsável por disparar comentários massivos.
      * @param commentsAvailable Refere-se ao container de comentários disponíveis.
+     * @param throwInterval     Refere-se ao intervalo de disparo.
+     * @param disguiseInterval  Refere-se ao intervalo de disfarçe.
      */
-    public void run(final Container<String> commentsAvailable) {
+    public void run(final Container<String> commentsAvailable, final IRange<Integer> throwInterval,
+            final IRange<Integer> disguiseInterval) {
         makeSafeThread(() -> {
             if (isReady() && !isRunning()) {
                 final Thread thread = makeFreeThread(() -> {
                     while (isReady()) {
                         try {
-                            throwComment(commentsAvailable);
+                            throwComment(commentsAvailable, throwInterval, disguiseInterval);
                         } catch (final InterruptedException | EmptyContainerException ex) {
                             break;
                         }
@@ -147,35 +158,58 @@ public final class Controller {
     /**
      * Método responsável por disparar comentário individual com restrições de intervalo de tempo.
      * @param commentsAvailable Refere-se ao container de comentários disponíveis.
+     * @param throwInterval     Refere-se ao intervalo de disparo.
+     * @param disguiseInterval  Refere-se ao intervalo de disfarçe.
      * @throws InterruptedException    Exceção lançada no caso da thread ser interrompida.
      * @throws EmptyContainerException Exceção lançada no caso do container de comentários estar vazio.
      */
-    private void throwComment(final Container<String> commentsAvailable)
-            throws InterruptedException, EmptyContainerException {
+    private void throwComment(final Container<String> commentsAvailable, final IRange<Integer> throwInterval,
+            final IRange<Integer> disguiseInterval) throws InterruptedException, EmptyContainerException {
         try {
-            final int interval = makeRandomValue(10000, 20000);
-            boot.getStateMessage().send("Ativo! Comentará em " + (interval / 1000) + " Segundos...");
-            sleep(interval);
+            final String prefix = "Ativo! Comentará em ";
+            sleep(SECOND, SECOND * makeRandomValue(throwInterval), milliseconds -> {
+                boot.getStateMessage().send(prefix + millisecondsToMinutes(milliseconds) + " Minuto(s)...");
+            });
             boot.throwComment(commentsAvailable.safeGet());
         } catch (final PageFaultException ex) {
-            final int interval = makeRandomValue(60000 * 3, 60000 * 5);
             boot.updateCurrentPage();
             final String prefix = "Ativo! Disfarçando Comportamento Suspeito por ";
-            String suffix = " Minuto...";
-            if ((interval / 60000) > 1) suffix = " Minutos...";
-            boot.getStateMessage().send(prefix + toString(((double) interval) / 60000.0) + suffix);
-            sleep(interval);
+            sleep(SECOND, MINUTE * makeRandomValue(disguiseInterval), milliseconds -> {
+                boot.getStateMessage().send(prefix + millisecondsToMinutes(milliseconds) + " Minuto(s)...");
+            });
         }
     }
 
     /**
-     * Método responsável por converter em caractere um valor decimal.
-     * @param value Refere-se ao valor decimal.
-     * @return Retorna um valor decimal convertido em caractere.
+     * Método responsável por converter milissegundos em minutos.
+     * @param milliseconds Refere-se aos milissegundos.
+     * @return Retorna milissegundos convertidos em minutos.
      */
-    private String toString(final double value) {
-        final DecimalFormat decimalFormat = new DecimalFormat("#,##0.00");
-        return decimalFormat.format(value);
+    private static String millisecondsToMinutes(final int milliseconds) {
+        int second, minute = 0;
+        if (milliseconds >= MINUTE) {
+            minute = (milliseconds / MINUTE);
+            second = (milliseconds - minute * MINUTE) / SECOND;
+        } else {
+            second = milliseconds / SECOND;
+        }
+        return (second <= 9) ? minute + ":0" + second : minute + ":" + second;
+    }
+
+    /**
+     * Método responsável por fazer com que um dado processo seja interrompido temporáriamente.
+     * @param unitOfTime  Refere-se a unidade de tempo utilizada na interrupção.
+     * @param currentTime Refere-se ao tempo atual.
+     * @param message     Refere-se ao menssageiro de tempo restante.
+     * @throws InterruptedException Exceção lançada no caso da thread ser interrompida.
+     */
+    private static void sleep(final int unitOfTime, final int currentTime, final IMessage<Integer> message)
+            throws InterruptedException {
+        if (currentTime > 0) {
+            message.send(currentTime);
+            Thread.sleep(unitOfTime);
+            sleep(unitOfTime, currentTime - unitOfTime, message);
+        }
     }
 
     /**

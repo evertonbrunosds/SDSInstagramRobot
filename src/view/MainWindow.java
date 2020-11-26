@@ -35,7 +35,7 @@ import static view.PostStopWindow.successLimit;
 /**
  * Classe responsável por comportar-se como janela princial da aplicação.
  * @author Everton Bruno Silva dos Santos.
- * @version 1.2
+ * @version 1.3
  */
 public class MainWindow extends javax.swing.JFrame {
     /**
@@ -85,7 +85,7 @@ public class MainWindow extends javax.swing.JFrame {
     @Override
     public void dispose() {
         Controller.getInstance().disconnect();
-        System.exit(0);
+        super.dispose();
     }
 
     /**

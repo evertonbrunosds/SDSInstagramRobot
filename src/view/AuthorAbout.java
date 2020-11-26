@@ -26,6 +26,7 @@ import javax.swing.JOptionPane;
 /**
  * Classe responsável por comportar-se como janela de autoria.
  * @author Everton Bruno Silva dos Santos.
+ * @version 1.3
  */
 public class AuthorAbout extends javax.swing.JDialog {
     /**
@@ -90,7 +91,7 @@ public class AuthorAbout extends javax.swing.JDialog {
         labelVersion.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         labelVersion.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
 
-        labelProductNameAndVersion.setText("SDSInstagramRobot (v1.2)");
+        labelProductNameAndVersion.setText("SDSInstagramRobot (v1.3)");
 
         labelNameDevAuthor.setText("Copyright © 2020. Everton Bruno Silva dos Santos.");
 

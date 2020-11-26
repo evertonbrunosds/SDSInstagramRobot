@@ -134,8 +134,7 @@ public final class Controller {
      * @param throwInterval     Refere-se ao intervalo de disparo.
      * @param disguiseInterval  Refere-se ao intervalo de disfarçe.
      */
-    public void run(final Container<String> commentsAvailable, final IRange<Integer> throwInterval,
-            final IRange<Integer> disguiseInterval) {
+    public void run(final Container<String> commentsAvailable, final IRange<Integer> throwInterval, final IRange<Integer> disguiseInterval) {
         makeSafeThread(() -> {
             if (isReady() && !isRunning()) {
                 final Thread thread = makeFreeThread(() -> {

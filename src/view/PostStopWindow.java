@@ -24,7 +24,7 @@ import java.awt.event.KeyEvent;
 /**
  * Classe responsável por comportar-se como janela de interrupção.
  * @author Everton Bruno Silva dos Santos.
- * @version 1.2
+ * @version 1.3
  */
 public class PostStopWindow extends javax.swing.JDialog {
     /**
@@ -186,14 +186,14 @@ public class PostStopWindow extends javax.swing.JDialog {
         setResizable(false);
 
         buttonGroupInterrupt.add(radioButtonSuccess);
-        radioButtonSuccess.setText("Interromper Após Tentativas Bem Sucedidas:");
+        radioButtonSuccess.setText("Interromper após tentativas bem sucedidas.");
         radioButtonSuccess.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 radioButtonSuccessStateChanged(evt);
             }
         });
 
-        labelSuccess.setText("Quantidade de Tentativas:");
+        labelSuccess.setText("Quantidade de tentativas:");
 
         textFieldSuccess.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         textFieldSuccess.setEnabled(false);
@@ -208,14 +208,14 @@ public class PostStopWindow extends javax.swing.JDialog {
         });
 
         buttonGroupInterrupt.add(radioButtonFailure);
-        radioButtonFailure.setText("Interromper Após Tentativas Mal Sucedidas:");
+        radioButtonFailure.setText("Interromper após tentativas mal sucedidas.");
         radioButtonFailure.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 radioButtonFailureStateChanged(evt);
             }
         });
 
-        labelFailure.setText("Quantidade de Tentativas:");
+        labelFailure.setText("Quantidade de tentativas:");
 
         textFieldFailure.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         textFieldFailure.setEnabled(false);
@@ -230,14 +230,14 @@ public class PostStopWindow extends javax.swing.JDialog {
         });
 
         buttonGroupInterrupt.add(radioButtonAttempts);
-        radioButtonAttempts.setText("Interromper Após Tentativas Totalizadas:");
+        radioButtonAttempts.setText("Interromper após tentativas totalizadas.");
         radioButtonAttempts.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 radioButtonAttemptsStateChanged(evt);
             }
         });
 
-        labelAttempts.setText("Quantidade de Tentativas:");
+        labelAttempts.setText("Quantidade de tentativas:");
 
         textFieldAttempts.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         textFieldAttempts.setEnabled(false);
@@ -253,7 +253,7 @@ public class PostStopWindow extends javax.swing.JDialog {
 
         buttonGroupInterrupt.add(radioButtonNoConditions);
         radioButtonNoConditions.setSelected(true);
-        radioButtonNoConditions.setText("Não Interromper Através de Condições:");
+        radioButtonNoConditions.setText("Não interromper através de condições.");
         radioButtonNoConditions.addChangeListener(new javax.swing.event.ChangeListener() {
             public void stateChanged(javax.swing.event.ChangeEvent evt) {
                 radioButtonNoConditionsStateChanged(evt);
@@ -268,7 +268,7 @@ public class PostStopWindow extends javax.swing.JDialog {
         });
 
         radioButtonInform.setSelected(true);
-        radioButtonInform.setText("Avise-me Quado Interromper");
+        radioButtonInform.setText("Avise-me quado interromper.");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

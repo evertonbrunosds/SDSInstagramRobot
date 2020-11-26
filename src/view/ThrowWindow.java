@@ -24,6 +24,7 @@ import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
 import model.IRange;
 import static model.Factory.makeRange;
+import model.ITime;
 
 /**
  * Classe responsável por comportar-se como janela de disparo.
@@ -70,11 +71,13 @@ public class ThrowWindow extends javax.swing.JDialog {
             correctValue();
             dispose();
             Controller.getInstance().loadPage(textField.getText());
-            final IRange<Integer> throwInterval = makeRange(() -> 10, () -> 20);
-            final IRange<Integer> disguiseInterval = makeRange(() -> 2, () -> 5);
+            final IRange<Integer> throwInterval;
+            final IRange<Integer> disguiseInterval;
+            throwInterval = makeRange(() -> ITime.seconds(10), () -> ITime.seconds(20));
+            disguiseInterval = makeRange(() -> ITime.minutes(2), () -> ITime.minutes(5));
             Controller.getInstance().run(CommentsWindow.getContainer(), throwInterval, disguiseInterval);
         } catch (final Exception ex) {
-            JOptionPane.showMessageDialog(this, "Tente uma Postagem do Instagram.", "Mensagem de Erro!", 2);
+            JOptionPane.showMessageDialog(this, "Tente uma postagem do Instagram.", "Mensagem de Erro!", 2);
         }
     }
 

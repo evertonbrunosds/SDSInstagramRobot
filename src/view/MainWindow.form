@@ -173,22 +173,22 @@
   <SubComponents>
     <Component class="javax.swing.JLabel" name="labelTotalAttemptsCounter">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Tentativas Totalizadas: 0"/>
+        <Property name="text" type="java.lang.String" value="Tentativas totalizadas: 0"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="labelFailureCounter">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Tentativas Mal Sucedidas: 0"/>
+        <Property name="text" type="java.lang.String" value="Tentativas mal sucedidas: 0"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="labelSuccessCounter">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Tentativas Bem Sucedidas: 0"/>
+        <Property name="text" type="java.lang.String" value="Tentativas bem sucedidas: 0"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JLabel" name="labelState">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Estado: Aguardando A&#xe7;&#xf5;es de Usu&#xe1;rio..."/>
+        <Property name="text" type="java.lang.String" value="Estado: Aguardando a&#xe7;&#xf5;es de usu&#xe1;rio..."/>
         <Property name="autoscrolls" type="boolean" value="true"/>
       </Properties>
     </Component>

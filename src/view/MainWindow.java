@@ -103,7 +103,7 @@ public class MainWindow extends javax.swing.JFrame {
     private IMessage<Integer> updaterFailureCounter() {
         return (final Integer counter) -> {
             stopPost(failureLimit(), counter, " tentativas mal sucedidas.");
-            labelFailureCounter.setText("Tentativas Mal Sucedidas: " + counter);
+            labelFailureCounter.setText("Tentativas mal sucedidas: " + counter);
         };
     }
 
@@ -114,7 +114,7 @@ public class MainWindow extends javax.swing.JFrame {
     private IMessage<Integer> updaterSuccessCounter() {
         return (final Integer counter) -> {
             stopPost(successLimit(), counter, " tentativas bem sucedidas.");
-            labelSuccessCounter.setText("Tentativas Bem Sucedidas: " + counter);
+            labelSuccessCounter.setText("Tentativas bem sucedidas: " + counter);
         };
     }
 
@@ -125,7 +125,7 @@ public class MainWindow extends javax.swing.JFrame {
     private IMessage<Integer> updaterTotalAttemptsCounter() {
         return (final Integer counter) -> {
             stopPost(attemptsLimit(), counter, " tentativas totalizadas.");
-            labelTotalAttemptsCounter.setText("Tentativas Totalizadas: " + counter);
+            labelTotalAttemptsCounter.setText("Tentativas totalizadas: " + counter);
         };
     }
 
@@ -138,7 +138,7 @@ public class MainWindow extends javax.swing.JFrame {
     private static void stopPost(final int limit, final int counter, final String suffix) {
         makeFreeThread(() -> {
             if (limit > 0 && limit <= counter) {
-                final String title = "Mensagem de Aviso";
+                final String title = "Mensagem de Aviso!";
                 final String msg = "Interrupção programada realizada após " + counter + suffix;
                 Controller.getInstance().stop();
                 if (inform()) {
@@ -176,13 +176,13 @@ public class MainWindow extends javax.swing.JFrame {
         setIconImage(java.awt.Toolkit.getDefaultToolkit().getImage(getClass().getResource("/icons/x48_Size/gnome-robots-icon.png")));
         setResizable(false);
 
-        labelTotalAttemptsCounter.setText("Tentativas Totalizadas: 0");
+        labelTotalAttemptsCounter.setText("Tentativas totalizadas: 0");
 
-        labelFailureCounter.setText("Tentativas Mal Sucedidas: 0");
+        labelFailureCounter.setText("Tentativas mal sucedidas: 0");
 
-        labelSuccessCounter.setText("Tentativas Bem Sucedidas: 0");
+        labelSuccessCounter.setText("Tentativas bem sucedidas: 0");
 
-        labelState.setText("Estado: Aguardando Ações de Usuário...");
+        labelState.setText("Estado: Aguardando ações de usuário...");
         labelState.setAutoscrolls(true);
 
         menuAccont.setText("Perfil");

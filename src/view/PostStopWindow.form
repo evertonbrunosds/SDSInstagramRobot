@@ -122,7 +122,7 @@
         <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
           <ComponentRef name="buttonGroupInterrupt"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Interromper Ap&#xf3;s Tentativas Bem Sucedidas:"/>
+        <Property name="text" type="java.lang.String" value="Interromper ap&#xf3;s tentativas bem sucedidas."/>
       </Properties>
       <Events>
         <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="radioButtonSuccessStateChanged"/>
@@ -130,7 +130,7 @@
     </Component>
     <Component class="javax.swing.JLabel" name="labelSuccess">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Quantidade de Tentativas:"/>
+        <Property name="text" type="java.lang.String" value="Quantidade de tentativas:"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="textFieldSuccess">
@@ -150,7 +150,7 @@
         <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
           <ComponentRef name="buttonGroupInterrupt"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Interromper Ap&#xf3;s Tentativas Mal Sucedidas:"/>
+        <Property name="text" type="java.lang.String" value="Interromper ap&#xf3;s tentativas mal sucedidas."/>
       </Properties>
       <Events>
         <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="radioButtonFailureStateChanged"/>
@@ -158,7 +158,7 @@
     </Component>
     <Component class="javax.swing.JLabel" name="labelFailure">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Quantidade de Tentativas:"/>
+        <Property name="text" type="java.lang.String" value="Quantidade de tentativas:"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="textFieldFailure">
@@ -178,7 +178,7 @@
         <Property name="buttonGroup" type="javax.swing.ButtonGroup" editor="org.netbeans.modules.form.RADComponent$ButtonGroupPropertyEditor">
           <ComponentRef name="buttonGroupInterrupt"/>
         </Property>
-        <Property name="text" type="java.lang.String" value="Interromper Ap&#xf3;s Tentativas Totalizadas:"/>
+        <Property name="text" type="java.lang.String" value="Interromper ap&#xf3;s tentativas totalizadas."/>
       </Properties>
       <Events>
         <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="radioButtonAttemptsStateChanged"/>
@@ -186,7 +186,7 @@
     </Component>
     <Component class="javax.swing.JLabel" name="labelAttempts">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Quantidade de Tentativas:"/>
+        <Property name="text" type="java.lang.String" value="Quantidade de tentativas:"/>
       </Properties>
     </Component>
     <Component class="javax.swing.JTextField" name="textFieldAttempts">
@@ -226,7 +226,7 @@
     <Component class="javax.swing.JRadioButton" name="radioButtonInform">
       <Properties>
         <Property name="selected" type="boolean" value="true"/>
-        <Property name="text" type="java.lang.String" value="Avise-me Quado Interromper"/>
+        <Property name="text" type="java.lang.String" value="Avise-me quado interromper."/>
       </Properties>
     </Component>
   </SubComponents>

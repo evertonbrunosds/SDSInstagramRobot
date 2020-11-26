@@ -202,8 +202,7 @@ public final class Controller {
      * @param message     Refere-se ao menssageiro de tempo restante.
      * @throws InterruptedException Exceção lançada no caso da thread ser interrompida.
      */
-    private static void sleep(final int unitOfTime, final int currentTime, final IMessage<Integer> message)
-            throws InterruptedException {
+    private static void sleep(final int unitOfTime, final int currentTime, final IMessage<Integer> message) throws InterruptedException {
         if (currentTime > 0) {
             message.send(currentTime);
             Thread.sleep(unitOfTime);

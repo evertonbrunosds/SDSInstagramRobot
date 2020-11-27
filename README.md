@@ -24,6 +24,7 @@ O SDSInstagramRobot é uma ferramenta que visa automatizar a escrita de comentá
 - Retardo na interrupção (v1.0).
 - Falha no disparo de comentário único (v1.1).
 - Contabilização inadequada de falhas, sucessos e tentativas (v1.2).
+- Incompatibilidade com o [SDSFinance][01] (v1.2).
 
 ## Baixar o SDS Finance
 
@@ -46,5 +47,8 @@ O SDSInstagramRobot é uma ferramenta que visa automatizar a escrita de comentá
 [200]: https://github.com/evertonbrunosds/SDSInstagramRobot/releases/download/v1.3/SDSIR-Linux-setup-32and64.deb
 [201]: https://github.com/evertonbrunosds/SDSInstagramRobot/releases/download/v1.3/SDSIR-Linux-portable-32and64.tar.gz
 [301]: https://github.com/evertonbrunosds/SDSInstagramRobot/releases/download/v1.3/SDSIR-MacOS-portable.tar.gz
+
+[//]: #URL
+[01]: https://github.com/evertonbrunosds/SDSFinance
 
 <p align="center"><em> Copyright © 2020. Everton Bruno Silva dos Santos. </em></p>

@@ -207,7 +207,7 @@
           <ComponentRef name="buttonGroupInterrupt"/>
         </Property>
         <Property name="selected" type="boolean" value="true"/>
-        <Property name="text" type="java.lang.String" value="N&#xe3;o Interromper Atrav&#xe9;s de Condi&#xe7;&#xf5;es:"/>
+        <Property name="text" type="java.lang.String" value="N&#xe3;o interromper atrav&#xe9;s de condi&#xe7;&#xf5;es."/>
       </Properties>
       <Events>
         <EventHandler event="stateChanged" listener="javax.swing.event.ChangeListener" parameters="javax.swing.event.ChangeEvent" handler="radioButtonNoConditionsStateChanged"/>

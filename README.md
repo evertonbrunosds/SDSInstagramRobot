@@ -6,19 +6,14 @@
 O SDSInstagramRobot é uma ferramenta que visa automatizar a escrita de comentários em publicações do Instagram. Desse modo, o software apresentado tem por objetivo o intúito possibilitar o usuário efetue outras tarefas enquanto a interação com publicações do instagram ocorre de modo simultâneo. Sendo assim, por meio dessa ferramenta você pode economizar tempo a medida em que aumenta sua eficiência e produtividade ao se dedicar a outras atividades.
 
 ## Funcionalidades
-- Conecta ao perfil do Instagram (v1.0).
-- Desconecta do perfil do Instagram (v1.0).
-- Dispara comentários continuamente (v1.0).
-- Adiciona comentário à lista de comentários via teclado (v1.0).
-- Importa comentários à lista de comentários via arquivo (v1.0).
-- Exporta comentários da lista de comentários para arquivo (v1.0).
-- Interrupção imdiata disparo contínuo (v1.0).
-- Interrupção programada de disparo contínuo por quantidade de falhas (v1.2).
-- Interrupção programada de disparo contínuo por quantidade de sucessos (v1.2).
-- Interrupção programada de disparo contínuo por quantidade de tentativas (v1.2).
-- Notificação de interrupção programada de disparo contínuo (v1.2).
-- Contagem regressiva de intervalo de disparo (v1.3).
-- Contagem regressiva de intervalo de disfarçe (v1.3).
+- Conecta e desconecta do perfil do Instagram (v1.0).
+- Dispara continuamente comentários em publicações (v1.0).
+- Importa comentários à lista de comentários via teclado e arquivo de texto (v1.0).
+- Exporta comentários da lista de comentários para arquivo de texto (v1.0).
+- Interrompe imediatamente disparo contínuo em publicações (v1.0).
+- Programa interrupção disparo contínuo em publicações por número de falhas, tentativas e sucessos (v1.2).
+- Notifica interrupção programada de disparo contínuo em publicações (v1.2).
+- Exibe dinamicamente o intervalo de disparo de comentários contínuo em publicações, bem como, o intervalo de disfarce (v1.3).
 
 ## Correções
 - Retardo na interrupção (v1.0).

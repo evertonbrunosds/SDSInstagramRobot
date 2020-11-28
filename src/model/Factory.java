@@ -29,7 +29,7 @@ import org.openqa.selenium.firefox.FirefoxProfile;
 /**
  * Classe responsável por comportar-se como fábrica de objetos e dados.
  * @author Everton Bruno Silva dos Santos.
- * @version 1.3
+ * @version 1.4
  */
 public final class Factory {
     /**
@@ -111,15 +111,6 @@ public final class Factory {
     }
 
     /**
-     * Método responsável por retornar valor aleatório sorteado em dado intervalo fechado.
-     * @param range Refere-se a faixa de valores mínimo e máximo.
-     * @return Retorna valor aleatório sorteado em dado intervalo fechado.
-     */
-    public static int makeRandomValue(final IRange<Integer> range) {
-        return makeRandomValue(range.getMin(), range.getMax());
-    }
-
-    /**
      * Método responsável por retornar instância de robô.
      * @param successMessage Refere-se a mensagem de sucesso.
      * @param failureMessage Refere-se a mensagem de falha.
@@ -130,28 +121,6 @@ public final class Factory {
     public static Boot makeBoot(final IMessage<Integer> successMessage, final IMessage<Integer> failureMessage,
             final IMessage<Integer> totalAttempts, final IMessage<String> stateMessage) {
         return new Boot(successMessage, failureMessage, totalAttempts, stateMessage);
-    }
-
-    /**
-     * Método responsável por retornar instância de classe interna anônima implementante de faixa.
-     * @param minValue Refere-se ao container de valor mínimo.
-     * @param maxValue Refere-se ao container de valor máximo.
-     * @return Retorna instância de classe interna anônima implementante de faixa.
-     */
-    public static IRange<Integer> makeRange(final Container<Integer> minValue, final Container<Integer> maxValue) {
-        return new IRange<Integer>() {
-
-            @Override
-            public Integer getMin() {
-                return minValue.freeGet();
-            }
-
-            @Override
-            public Integer getMax() {
-                return maxValue.freeGet();
-            }
-
-        };
     }
 
 }

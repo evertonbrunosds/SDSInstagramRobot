@@ -35,7 +35,7 @@ import static view.PostStopWindow.successLimit;
 /**
  * Classe responsável por comportar-se como janela princial da aplicação.
  * @author Everton Bruno Silva dos Santos.
- * @version 1.3
+ * @version 1.4
  */
 public class MainWindow extends javax.swing.JFrame {
     /**
@@ -164,6 +164,7 @@ public class MainWindow extends javax.swing.JFrame {
         optStopNow = new javax.swing.JMenuItem();
         optStopPost = new javax.swing.JMenuItem();
         optThrow = new javax.swing.JMenuItem();
+        optInterval = new javax.swing.JMenuItem();
         optList = new javax.swing.JMenuItem();
         menuAbout = new javax.swing.JMenu();
         optLibs = new javax.swing.JMenuItem();
@@ -244,6 +245,14 @@ public class MainWindow extends javax.swing.JFrame {
             }
         });
         menuComments.add(optThrow);
+
+        optInterval.setText("Intervalo");
+        optInterval.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                optIntervalActionPerformed(evt);
+            }
+        });
+        menuComments.add(optInterval);
 
         optList.setText("Lista");
         optList.addActionListener(new java.awt.event.ActionListener() {
@@ -353,6 +362,10 @@ public class MainWindow extends javax.swing.JFrame {
         PostStopWindow.showModal(this);
     }//GEN-LAST:event_optStopPostActionPerformed
 
+    private void optIntervalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_optIntervalActionPerformed
+        IntervalWindow.showModal(this);
+    }//GEN-LAST:event_optIntervalActionPerformed
+
     /**
      * Método responsável por invocar toda a aplicação.
      * @param args Refere-se aos argumentos de invocação.
@@ -386,6 +399,7 @@ public class MainWindow extends javax.swing.JFrame {
     private javax.swing.JMenuItem optAuthor;
     private javax.swing.JMenuItem optConnect;
     private javax.swing.JMenuItem optDisconnect;
+    private javax.swing.JMenuItem optInterval;
     private javax.swing.JMenuItem optLibs;
     private javax.swing.JMenuItem optLicense;
     private javax.swing.JMenuItem optList;

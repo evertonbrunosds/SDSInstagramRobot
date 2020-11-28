@@ -66,16 +66,14 @@ public class ThrowWindow extends javax.swing.JDialog {
     /**
      * Método responsável por disparar comentários massivos.
      */
-    public static void throwComments() throws NullPointerException {
+    private void throwComments() {
         try {
-            instance.dispose();
-            instance.correctValue();
-            Controller.getInstance().loadPage(instance.textField.getText());
+            dispose();
+            correctValue();
+            Controller.getInstance().loadPage(textField.getText());
             Controller.getInstance().run(getComments(), getThrowInterval(), getDisguiseInterval());
-        } catch (final NullPointerException ex) {
-            throw new NullPointerException();
         } catch (final Exception ex) {
-            JOptionPane.showMessageDialog(instance, "URL incompatível, tente uma postagem do Instagram.", "Mensagem de Erro!", 2);
+            JOptionPane.showMessageDialog(this, "URL incompatível, tente uma postagem do Instagram.", "Mensagem de Erro!", 2);
         }
     }
 

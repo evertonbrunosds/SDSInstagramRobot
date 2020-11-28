@@ -22,14 +22,14 @@ package view;
 import control.Controller;
 import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
-import model.IRange;
-import static model.Factory.makeRange;
-import model.ITime;
+import static view.IntervalWindow.getThrowInterval;
+import static view.IntervalWindow.getDisguiseInterval;
+import static view.CommentsWindow.getComments;
 
 /**
  * Classe responsável por comportar-se como janela de disparo.
  * @author Everton Bruno Silva dos Santos.
- * @version 1.3
+ * @version 1.4
  */
 public class ThrowWindow extends javax.swing.JDialog {
     /**
@@ -66,18 +66,16 @@ public class ThrowWindow extends javax.swing.JDialog {
     /**
      * Método responsável por disparar comentários massivos.
      */
-    private void throwComments() {
+    public static void throwComments() throws NullPointerException {
         try {
-            correctValue();
-            dispose();
-            Controller.getInstance().loadPage(textField.getText());
-            final IRange<Integer> throwInterval;
-            final IRange<Integer> disguiseInterval;
-            throwInterval = makeRange(() -> ITime.seconds(10), () -> ITime.seconds(20));
-            disguiseInterval = makeRange(() -> ITime.minutes(2), () -> ITime.minutes(5));
-            Controller.getInstance().run(CommentsWindow.getContainer(), throwInterval, disguiseInterval);
+            instance.dispose();
+            instance.correctValue();
+            Controller.getInstance().loadPage(instance.textField.getText());
+            Controller.getInstance().run(getComments(), getThrowInterval(), getDisguiseInterval());
+        } catch (final NullPointerException ex) {
+            throw new NullPointerException();
         } catch (final Exception ex) {
-            JOptionPane.showMessageDialog(this, "Tente uma postagem do Instagram.", "Mensagem de Erro!", 2);
+            JOptionPane.showMessageDialog(instance, "URL incompatível, tente uma postagem do Instagram.", "Mensagem de Erro!", 2);
         }
     }
 

@@ -91,7 +91,7 @@ public class AuthorAbout extends javax.swing.JDialog {
         labelVersion.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         labelVersion.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
 
-        labelProductNameAndVersion.setText("SDSInstagramRobot (v1.3)");
+        labelProductNameAndVersion.setText("SDSInstagramRobot (v1.4)");
 
         labelNameDevAuthor.setText("Copyright © 2020. Everton Bruno Silva dos Santos.");
 

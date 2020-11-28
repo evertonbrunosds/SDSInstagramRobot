@@ -46,7 +46,7 @@ public class IntervalWindow extends javax.swing.JDialog {
     /**
      * Refere-se ao intervalo de disfarçe em milisegundos.
      */
-    private static int disguiseIntervalMilliseconds = ITime.minutes(5);;
+    private static int disguiseIntervalMilliseconds = ITime.minutes(5);
 
     /**
      * Método responsável por exibir a janela de intervalos.
@@ -119,8 +119,7 @@ public class IntervalWindow extends javax.swing.JDialog {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setTitle("Alterar Intervalos");
         setAlwaysOnTop(true);
-        setIconImage(java.awt.Toolkit.getDefaultToolkit()
-                .getImage(getClass().getResource("/icons/x48_Size/gnome-robots-icon.png")));
+        setIconImage(java.awt.Toolkit.getDefaultToolkit().getImage(getClass().getResource("/icons/x48_Size/gnome-robots-icon.png")));
         setResizable(false);
 
         labelThrowInterval.setText("Intervalo de Disparo");

@@ -33,7 +33,7 @@ import model.FileTextStream;
 /**
  * Classe responsável por comportar-se como janela de comentários.
  * @author Everton Bruno Silva dos Santos.
- * @version 1.2
+ * @version 1.4
  */
 public class CommentsWindow extends javax.swing.JDialog {
     /**
@@ -75,7 +75,7 @@ public class CommentsWindow extends javax.swing.JDialog {
      * Método responsável por retornar container de comentários.
      * @return Retorna container de comentários.
      */
-    public static Container<String> getContainer() {
+    public static Container<String> getComments() {
         return () -> getComment();
     }
 

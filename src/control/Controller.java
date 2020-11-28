@@ -23,16 +23,14 @@ import model.Boot;
 import model.Container;
 import model.Container.EmptyContainerException;
 import static model.Factory.makeFreeThread;
-import static model.Factory.makeRandomValue;
 import model.PageFaultException;
 import static model.Factory.makeSafeThread;
-import model.IRange;
 import model.ITime;
 
 /**
  * Classe responsável por comportar-se como controlador.
  * @author Everton Bruno Silva dos Santos.
- * @version 1.3
+ * @version 1.4
  */
 public final class Controller {
     /**
@@ -126,7 +124,7 @@ public final class Controller {
      * @param throwInterval     Refere-se ao intervalo de disparo.
      * @param disguiseInterval  Refere-se ao intervalo de disfarçe.
      */
-    public void run(final Container<String> commentsAvailable, final IRange<Integer> throwInterval, final IRange<Integer> disguiseInterval) {
+    public void run(final Container<String> commentsAvailable, final Container<Integer> throwInterval, final Container<Integer> disguiseInterval) {
         makeSafeThread(() -> {
             if (isReady() && !isRunning()) {
                 final Thread thread = makeFreeThread(() -> {
@@ -154,18 +152,18 @@ public final class Controller {
      * @throws InterruptedException    Exceção lançada no caso da thread ser interrompida.
      * @throws EmptyContainerException Exceção lançada no caso do container de comentários estar vazio.
      */
-    private void throwComment(final Container<String> commentsAvailable, final IRange<Integer> throwInterval,
-            final IRange<Integer> disguiseInterval) throws InterruptedException, EmptyContainerException {
+    private void throwComment(final Container<String> commentsAvailable, final Container<Integer> throwInterval,
+            final Container<Integer> disguiseInterval) throws InterruptedException, EmptyContainerException {
         try {
             final String prefix = "Ativo! Comentará em ";
-            ITime.stop(ITime.SECOND, makeRandomValue(throwInterval), milliseconds -> {
+            ITime.stop(ITime.SECOND, throwInterval.freeGet(), milliseconds -> {
                 sendTimeStateMessage(prefix, milliseconds);
             });
             boot.throwComment(commentsAvailable.safeGet());
         } catch (final PageFaultException ex) {
             boot.updateCurrentPage();
             final String prefix = "Ativo! Disfarçando comportamento suspeito por ";
-            ITime.stop(ITime.SECOND, makeRandomValue(disguiseInterval), milliseconds -> {
+            ITime.stop(ITime.SECOND, disguiseInterval.freeGet(), milliseconds -> {
                 sendTimeStateMessage(prefix, milliseconds);
             });
         }

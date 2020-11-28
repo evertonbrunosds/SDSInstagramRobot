@@ -19,11 +19,9 @@
  */
 package view;
 
-import control.Controller;
 import javax.swing.JLabel;
 import model.ITime;
 import model.Container;
-import static view.ThrowWindow.throwComments;
 
 /**
  * Classe responsável por comportar-se como janela de intervalos.
@@ -223,10 +221,6 @@ public class IntervalWindow extends javax.swing.JDialog {
     private void btnConfirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnConfirmActionPerformed
         throwIntervalMilliseconds = ITime.seconds(sliderThrowInterval.getValue() * 30);
         disguiseIntervalMilliseconds = ITime.minutes(sliderDisguiseInterval.getValue());
-        if (Controller.getInstance().isRunning()) {
-            Controller.getInstance().stop();
-            throwComments();
-        }
         dispose();
     }//GEN-LAST:event_btnConfirmActionPerformed
 

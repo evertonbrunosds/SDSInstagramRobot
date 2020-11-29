@@ -23,10 +23,10 @@ package model;
  * Interface responsável por comportar-se como container.
  * @author Everton Bruno Silva dos Santos.
  * @param <D> Refere-se ao tipo de dados contido no container.
- * @version 1.0
+ * @version 1.4
  */
 @FunctionalInterface
-public interface Container<D> {
+public interface IContainer<D> {
 
     /**
      * Método responsável por retornar o dado contido no container.

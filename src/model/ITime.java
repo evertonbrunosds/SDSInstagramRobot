@@ -112,9 +112,9 @@ public interface ITime {
     /**
      * Interface responsável por efetuar formatações de unidades de tempo.
      * @author Everton Bruno Silva dos Santos.
-     * @version 1.3
+     * @version 1.4
      */
-    public interface Format {
+    public final class Format {
 
         /**
          * Método responsável por converter milissegundos em segundos.

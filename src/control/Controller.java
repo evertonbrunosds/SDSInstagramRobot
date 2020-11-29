@@ -20,8 +20,8 @@
 package control;
 
 import model.Boot;
-import model.Container;
-import model.Container.EmptyContainerException;
+import model.IContainer;
+import model.IContainer.EmptyContainerException;
 import static model.Factory.makeFreeThread;
 import model.PageFaultException;
 import static model.Factory.makeSafeThread;
@@ -124,7 +124,7 @@ public final class Controller {
      * @param throwInterval     Refere-se ao intervalo de disparo.
      * @param disguiseInterval  Refere-se ao intervalo de disfarçe.
      */
-    public void run(final Container<String> commentsAvailable, final Container<Integer> throwInterval, final Container<Integer> disguiseInterval) {
+    public void run(final IContainer<String> commentsAvailable, final IContainer<Integer> throwInterval, final IContainer<Integer> disguiseInterval) {
         makeSafeThread(() -> {
             if (isReady() && !isRunning()) {
                 final Thread thread = makeFreeThread(() -> {
@@ -152,8 +152,8 @@ public final class Controller {
      * @throws InterruptedException    Exceção lançada no caso da thread ser interrompida.
      * @throws EmptyContainerException Exceção lançada no caso do container de comentários estar vazio.
      */
-    private void throwComment(final Container<String> commentsAvailable, final Container<Integer> throwInterval,
-            final Container<Integer> disguiseInterval) throws InterruptedException, EmptyContainerException {
+    private void throwComment(final IContainer<String> commentsAvailable, final IContainer<Integer> throwInterval,
+            final IContainer<Integer> disguiseInterval) throws InterruptedException, EmptyContainerException {
         try {
             final String prefix = "Ativo! Comentará em ";
             ITime.stop(ITime.SECOND, throwInterval.freeGet(), milliseconds -> {

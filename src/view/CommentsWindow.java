@@ -26,7 +26,7 @@ import java.util.List;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
-import model.Container;
+import model.IContainer;
 import static model.Factory.makeRandomValue;
 import model.FileTextStream;
 
@@ -75,7 +75,7 @@ public class CommentsWindow extends javax.swing.JDialog {
      * Método responsável por retornar container de comentários.
      * @return Retorna container de comentários.
      */
-    public static Container<String> getComments() {
+    public static IContainer<String> getComments() {
         return () -> getComment();
     }
 

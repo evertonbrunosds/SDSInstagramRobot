@@ -11,14 +11,14 @@ O SDSInstagramRobot é uma ferramenta que visa automatizar a escrita de comentá
 - Importa comentários à lista de comentários via teclado e arquivo de texto (v1.0).
 - Exporta comentários da lista de comentários para arquivo de texto (v1.0).
 - Interrompe imediatamente disparo contínuo em publicações (v1.0).
-- Programa interrupção disparo contínuo em publicações por número de falhas, tentativas e sucessos (v1.2).
+- Programa interrupção de disparo contínuo em publicações por número de falhas, tentativas e sucessos (v1.2).
 - Notifica interrupção programada de disparo contínuo em publicações (v1.2).
-- Exibe dinamicamente o intervalo de disparo de comentários contínuo em publicações, bem como, o intervalo de disfarce (v1.3).
-- Possibilita a alteração de intervalo de disparo de comentários contínuo em publicações, bem como, o intervalo de disfarce (v1.4).
+- Exibe dinamicamente o intervalo de disparo contínuo de comentários em publicações, bem como, o intervalo de disfarce (v1.3).
+- Possibilita a alteração de intervalo de disparo contínuo de comentários em publicações, bem como, o intervalo de disfarce (v1.4).
 
 ## Correções
-- Retardo na interrupção (v1.0).
-- Falha no disparo de comentário único (v1.1).
+- Retardo na interrupção de disparo contínuo de comentários (v1.0).
+- Falha no disparo contínuo de comentários quando só há um comentário (v1.1).
 - Contabilização inadequada de falhas, sucessos e tentativas (v1.2).
 - Incompatibilidade com o [SDSFinance][01] (v1.2).
 

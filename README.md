@@ -31,8 +31,8 @@ O SDSInstagramRobot é uma ferramenta que visa automatizar a escrita de comentá
 ## Capturas de Tela
 
 <p id="simbol" align="center">
+	<img src="https://media.giphy.com/media/7120mApt6ZTDWglVTw/giphy.gif" height="174px"/>
 	<img src="https://i.imgur.com/1Epwvld.png" height="208px"/>
-	<img src="https://i.imgur.com/ESepbji.png" height="174px"/>
 	<img src="https://i.imgur.com/ekYlZQZ.png" height="285px"/>
 </p>
 

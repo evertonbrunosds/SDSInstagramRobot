@@ -14,6 +14,7 @@ O SDSInstagramRobot é uma ferramenta que visa automatizar a escrita de comentá
 - Programa interrupção disparo contínuo em publicações por número de falhas, tentativas e sucessos (v1.2).
 - Notifica interrupção programada de disparo contínuo em publicações (v1.2).
 - Exibe dinamicamente o intervalo de disparo de comentários contínuo em publicações, bem como, o intervalo de disfarce (v1.3).
+- Possibilita a alteração de intervalo de disparo de comentários contínuo em publicações, bem como, o intervalo de disfarce (v1.4).
 
 ## Correções
 - Retardo na interrupção (v1.0).
@@ -25,25 +26,36 @@ O SDSInstagramRobot é uma ferramenta que visa automatizar a escrita de comentá
 
 | Versão | Windows | Linux | MacOS |
 | --- | --- | --- | --- |
-| 1.3 | [EXE Instalável][100] | [DEB Instalável][200] | Indisponível |
-| 1.3 | [ZIP Portátil][101] | [TAR.GZ Portátil][201] | [TAR.GZ Portátil][301] |
+| 1.4 | [EXE Instalável][100] | [DEB Instalável][200] | Indisponível |
+| 1.4 | [ZIP Portátil][101] | [TAR.GZ Portátil][201] | [TAR.GZ Portátil][301] |
 
 ## Capturas de Tela
 
 <p id="simbol" align="center">
+	<img src="https://i.imgur.com/1Epwvld.png" height="208px"/>
 	<img src="https://media.giphy.com/media/7120mApt6ZTDWglVTw/giphy.gif" height="174px"/>
 	<img src="https://media.giphy.com/media/Di1dvkPYMC5lcgGmPa/giphy.gif" height="256px"/>
 	<img src="https://media.giphy.com/media/SPiE9toeM5evVNJ1dh/giphy.gif" height="466px"/>
 </p>
 
+## Bibliotecas
+- [Geckodriver (v0.28.0)][02] : [Mozilla Public License (v2.0).][03]
+- [Selenium Java (v3.5.3)][04] : [Apache License (v2.0).][05]
+- [Darcula (v1.6)][06] : [Apache License (v2.0).][05]
+
 [//]: #DownloadFile
-[100]: https://github.com/evertonbrunosds/SDSInstagramRobot/releases/download/v1.3/SDSIR-Windows-setup-32and64.exe
-[101]: https://github.com/evertonbrunosds/SDSInstagramRobot/releases/download/v1.3/SDSIR-Windows-portable-32and64.zip
-[200]: https://github.com/evertonbrunosds/SDSInstagramRobot/releases/download/v1.3/SDSIR-Linux-setup-32and64.deb
-[201]: https://github.com/evertonbrunosds/SDSInstagramRobot/releases/download/v1.3/SDSIR-Linux-portable-32and64.tar.gz
-[301]: https://github.com/evertonbrunosds/SDSInstagramRobot/releases/download/v1.3/SDSIR-MacOS-portable.tar.gz
+[100]: https://github.com/evertonbrunosds/SDSInstagramRobot/releases/download/v1.4/SDSIR-Windows-setup-32and64.exe
+[101]: https://github.com/evertonbrunosds/SDSInstagramRobot/releases/download/v1.4/SDSIR-Windows-portable-32and64.zip
+[200]: https://github.com/evertonbrunosds/SDSInstagramRobot/releases/download/v1.4/SDSIR-Linux-setup-32and64.deb
+[201]: https://github.com/evertonbrunosds/SDSInstagramRobot/releases/download/v1.4/SDSIR-Linux-portable-32and64.tar.gz
+[301]: https://github.com/evertonbrunosds/SDSInstagramRobot/releases/download/v1.4/SDSIR-MacOS-portable.tar.gz
 
 [//]: #URL
 [01]: https://github.com/evertonbrunosds/SDSFinance
+[02]: https://github.com/mozilla/geckodriver/releases/tag/v0.28.0
+[03]: https://www.mozilla.org/en-US/MPL/2.0/
+[04]: https://mvnrepository.com/artifact/org.seleniumhq.selenium/selenium-java/3.5.3
+[05]: https://opensource.org/licenses/Apache-2.0
+[06]: https://github.com/bulenkov/Darcula
 
 <p align="center"><em> Copyright © 2020. Everton Bruno Silva dos Santos. </em></p>

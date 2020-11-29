@@ -21,7 +21,7 @@ package view;
 
 import javax.swing.JLabel;
 import model.ITime;
-import model.Container;
+import model.IContainer;
 
 /**
  * Classe responsável por comportar-se como janela de intervalos.
@@ -63,7 +63,7 @@ public class IntervalWindow extends javax.swing.JDialog {
      * Método responsável por retornar container de intervalo de disparo.
      * @return Retorna container de intervalo de disparo.
      */
-    public static Container<Integer> getThrowInterval() {
+    public static IContainer<Integer> getThrowInterval() {
         return () -> throwIntervalMilliseconds;
     }
 
@@ -71,7 +71,7 @@ public class IntervalWindow extends javax.swing.JDialog {
      * Método responsável por retornar container de intervalo de disfarçe.
      * @return Retorna container de intervalo de disfarçe.
      */
-    public static Container<Integer> getDisguiseInterval() {
+    public static IContainer<Integer> getDisguiseInterval() {
         return () -> disguiseIntervalMilliseconds;
     }
 

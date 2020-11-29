@@ -1,6 +1,6 @@
 <p id="simbol" align="center">
-	<img src="https://media.giphy.com/media/ZevprWYASdDWpL44EH/giphy.gif" height="60px"/>
-	<h1 align="center"> </h1>
+	<img src="https://i.imgur.com/cjXRVut.png" height="120px"/>
+	<h1 align="center">SDSInstagramRobot v1.4</h1>
 </p>
 
 O SDSInstagramRobot é uma ferramenta que visa automatizar a escrita de comentários em publicações do Instagram. Desse modo, o software apresentado tem por objetivo o intúito possibilitar o usuário efetue outras tarefas enquanto a interação com publicações do instagram ocorre de modo simultâneo. Sendo assim, por meio dessa ferramenta você pode economizar tempo a medida em que aumenta sua eficiência e produtividade ao se dedicar a outras atividades.

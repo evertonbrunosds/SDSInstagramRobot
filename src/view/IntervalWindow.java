@@ -26,7 +26,7 @@ import model.IContainer;
 /**
  * Classe responsável por comportar-se como janela de intervalos.
  * @author Everton Bruno Silva dos Santos.
- * @version 1.4
+ * @version 1.5
  */
 public class IntervalWindow extends javax.swing.JDialog {
     /**
@@ -40,7 +40,7 @@ public class IntervalWindow extends javax.swing.JDialog {
     /**
      * Refere-se ao intervalo de disparo em milisegundos.
      */
-    private static int throwIntervalMilliseconds = ITime.minutes(1);
+    private static int throwIntervalMilliseconds = ITime.seconds(90);
     /**
      * Refere-se ao intervalo de disfarçe em milisegundos.
      */
@@ -204,7 +204,7 @@ public class IntervalWindow extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnSetDefaultActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSetDefaultActionPerformed
-        sliderThrowInterval.setValue(2);
+        sliderThrowInterval.setValue(3);
         sliderDisguiseInterval.setValue(5);
     }//GEN-LAST:event_btnSetDefaultActionPerformed
 

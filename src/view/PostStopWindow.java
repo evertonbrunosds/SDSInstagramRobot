@@ -24,7 +24,7 @@ import java.awt.event.KeyEvent;
 /**
  * Classe responsável por comportar-se como janela de interrupção.
  * @author Everton Bruno Silva dos Santos.
- * @version 1.3
+ * @version 1.5
  */
 public class PostStopWindow extends javax.swing.JDialog {
     /**
@@ -378,16 +378,25 @@ public class PostStopWindow extends javax.swing.JDialog {
     private void textFieldSuccessKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textFieldSuccessKeyReleased
         validateAction(evt);
         filterValue(textFieldSuccess);
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            dispose();
+        }
     }//GEN-LAST:event_textFieldSuccessKeyReleased
 
     private void textFieldFailureKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textFieldFailureKeyReleased
         validateAction(evt);
         filterValue(textFieldFailure);
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            dispose();
+        }
     }//GEN-LAST:event_textFieldFailureKeyReleased
 
     private void textFieldAttemptsKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_textFieldAttemptsKeyReleased
         validateAction(evt);
         filterValue(textFieldAttempts);
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            dispose();
+        }
     }//GEN-LAST:event_textFieldAttemptsKeyReleased
 
     private void buttonConfirmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonConfirmActionPerformed
